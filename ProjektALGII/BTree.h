@@ -18,14 +18,17 @@ public:
 							*/
 	~BTree();				/**< Destructor */
 
-	void insert(int key);	/**< Insert Key into the Tree		 
+	void insert(int key);	/**< Insert Key into the Tree		
+							 *   Inspirace z https://www.geeksforgeeks.org/introduction-of-b-tree-2/
 							 *	 @param key Value to insert
 							*/
 	void remove(int key);	/**< Remove Key from the Tree		 
+							 *	 Inspirace z https://www.geeksforgeeks.org/delete-operation-in-b-tree/
 							 *	 @param key Value to remove
 							*/
 
 	Node* search(int key);	/**< Finds Node of the Key in the Tree		 
+							 *   Inspirace z https://www.geeksforgeeks.org/introduction-of-b-tree-2/
 							 *	 @param key Value
 							 *	 @return Returns Node of Key in the tree
 							*/

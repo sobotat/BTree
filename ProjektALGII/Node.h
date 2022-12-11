@@ -21,36 +21,45 @@ public:
 	~Node();							/**< Destructor */
 
 	void insertNonFull(int key);				/**< Function to insert new Key in the SubTree
+												 *   Inspirace z https://www.geeksforgeeks.org/introduction-of-b-tree-2/
 												 *   @param key Key to insert
 												*/
 	void splitChild(int index, Node* node);		/**< Function that will split node in two
+												 *   Inspirace z https://www.geeksforgeeks.org/introduction-of-b-tree-2/
 												 *   @param key Key to insert
 												 *   @param node Node to split
 												*/
 
-	int findKey(int key);					/**< Function that will find Index of the Key
-											 *   @param key Key
-											 *   @return index of the Key
-											*/
+	int findKey(int key);						/**< Function that will find Index of the Key
+												 *   Inspirace z https://www.geeksforgeeks.org/delete-operation-in-b-tree/
+												 *	 @param key Key
+												 *	 @return index of the Key
+												*/
 	Node* search(int key);					/**< Function that will search for the Key
+											 *   Inspirace z https://www.geeksforgeeks.org/introduction-of-b-tree-2/
 											 *   @param key Key
 											 *   @return Node if it finds Key
 											*/
 
 	void remove(int key);					/**< Wrapper function that will remove Key in SubTree
+											 *	 Inspirace z https://www.geeksforgeeks.org/delete-operation-in-b-tree/
 											 *   @param key Key
 											*/
 	void removeFromLeaf(int index);			/**< Function that will remove Key in this Node witch is Leaf
+											 *	 Inspirace z https://www.geeksforgeeks.org/delete-operation-in-b-tree/
 											 *   @param key Key
 											*/
 	void removeFromNonLeaf(int index);		/**< Function that will remove Key in this Node witch is not Leaf
+											 *	 Inspirace z https://www.geeksforgeeks.org/delete-operation-in-b-tree/
 											 *   @param key Key
 											*/
 
 	int getPredecessor(int index);			/**< Function that gets Predecessor where is key present at index location
+											 *	 Inspirace z https://www.geeksforgeeks.org/delete-operation-in-b-tree/
 											 *   @param index Position in Node
 											*/
 	int getSuccessor(int index);			/**< Function that gets Successor where is key present at index location
+											 *	 Inspirace z https://www.geeksforgeeks.org/delete-operation-in-b-tree/
 											 *   @param index Position in Node
 											*/
 

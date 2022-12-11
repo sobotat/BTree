@@ -8,11 +8,6 @@ using namespace std;
  * \section intro_sec Introduction
  *
  * This project is made as school poject into Alg II.
- * 
- * \section sources Sources
- * 
- * https://www.geeksforgeeks.org/introduction-of-b-tree-2/
- * https://www.geeksforgeeks.org/delete-operation-in-b-tree/
  *
  */
 
