@@ -8,8 +8,15 @@ using namespace std;
  * \section intro_sec Introduction
  *
  * This project is made as school poject into Alg II.
+ * 
+ * \section sources Sources
+ * 
+ * https://www.geeksforgeeks.org/introduction-of-b-tree-2/
+ * https://www.geeksforgeeks.org/delete-operation-in-b-tree/
  *
  */
+
+string fileName = "out.txt";
 
 void btreeTestVector() {
     vector<int> keys = {
@@ -24,9 +31,7 @@ void btreeTestVector() {
         btree->print();
     }
 
-    cout << "\033[1;34mKeys\033[0m -> ";
-    btree->printKeys();
-    cout << "\n";
+    btree->printStatus();
 
     for (int key : keys) {
         (btree->search(key) != nullptr) ? cout << key << " \033[1;32mFound\033[0m\n" : cout << key << " \033[1;31mNot Found\033[0m\n";
@@ -44,17 +49,15 @@ void btreeTestVector() {
 
 void btreeTest(int count) {
     BTree* btree = new BTree(3);
-
+    btree->clearFile(fileName);
     for (int i = 1; i <= count; i++) {
         cout << "\033[1;32mAdded\033[0m " << i << "\n";
         btree->insert(i);
-        btree->print();
+        btree->printToFile(fileName, ("Added " + to_string(i)));
     }
 
-    cout << "\033[1;34mKeys\033[0m -> ";
-    btree->printKeys();
-    cout << "\n";
-
+    btree->printStatus();
+    
     int notFound = 0;
     for (int i = 1; i <= count; i++) {
         if (btree->search(i) != nullptr)
@@ -64,13 +67,14 @@ void btreeTest(int count) {
             notFound++;
         }
     }
-    cout << "\033[1;31mNot Found\033[0m Count: " << notFound << "\n";
+    cout << "\033[1;31mNot Found\033[0m Count: " << notFound << "\n\n";
 
     for (int i = 1; i <= count; i++) {
         cout << "\033[1;31mDeleted\033[0m " << i << "\n";
         btree->remove(i);
-        btree->print();
+        btree->printToFile(fileName, ("Deleted " + to_string(i)));
     }
+    
 
     delete btree;
 }
@@ -79,7 +83,7 @@ int main() {
     cout << "\033[1;34mB-Tree Projekt\033[0m\n\n";
     
     //btreeTestVector();
-    btreeTest(100);    
+    btreeTest(25);  
 
     cout << "\nEND";
 }

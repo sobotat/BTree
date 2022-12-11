@@ -128,7 +128,10 @@ void Node::remove(int key) {
 		balance(index);
 	}
 	else if (childNodes.at(index)->keys.size() == 0 && childNodes.at(index)->childNodes.size() > 0) {
+		Node* emptyNode = childNodes.at(index);
 		childNodes.at(index) = childNodes.at(index)->childNodes.front();
+		emptyNode->childNodes = vector<Node*>();
+		delete emptyNode;
 	}
 	else {
 		if (keys.size() > 0){
@@ -166,7 +169,6 @@ void Node::removeFromNonLeaf(int index) {
 	}
 	else {
 		merge(index);
-		//childNodes.at(index)->remove(key);
 		keys.erase(keys.begin() + index);
 	}
 }
@@ -294,13 +296,40 @@ void Node::print(int spacing) {
 		out += to_string(key);
 		out += " ";
 	}
-
-	//if (keys.size() != 0)
-		cout << out << "\n";
+		
+	cout << out << "\n";
 
 	for (Node* node : childNodes) {
 		node->print(spacing + nextSpace);
 	}
+}
+
+string Node::printToString(int spacing) {
+
+	int nextSpace = 2;
+	string out = "";
+
+	for (int s = 0; s < spacing; s++) {
+		if (s == (spacing - nextSpace) && childNodes.size() != 0)
+			out += "#";
+		else if (s == spacing - (nextSpace * 2))
+			out += (childNodes.size() == 0 ? "|" : ">");
+		else
+			out += " ";
+	}
+
+	for (int key : keys) {
+		out += to_string(key);
+		out += " ";
+	}
+
+	out += "\n";
+
+	for (Node* node : childNodes) {
+		out += node->printToString(spacing + nextSpace);
+	}
+
+	return out;
 }
 
 void Node::printKeys() {
@@ -317,4 +346,50 @@ void Node::printKeys() {
 
 	if (isLeaf == false)
 		childNodes.at(index)->printKeys();
+}
+
+int Node::countKeys() {
+
+	int count = keys.size();
+
+	for (Node* node : childNodes) {
+		count += node->countKeys();
+	}
+	
+	return count;
+}
+
+int Node::countMaxKeys() {
+
+	int maxKeys = (minDegree * 2 - 1);
+
+	for (Node* node : childNodes) {
+		maxKeys += node->countMaxKeys();
+	}
+
+	return maxKeys;
+}
+
+int Node::countPages() {
+
+	int count = childNodes.size();
+
+	for (Node* node : childNodes) {
+		count += node->countPages();
+	}
+
+	return count;
+}
+
+int Node::countHeight() {
+
+	int max = 0;
+	for (Node* node : childNodes) {
+		int height = node->countHeight();
+
+		if (height > max)
+			max = height;
+	}
+
+	return max + 1;
 }

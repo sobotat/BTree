@@ -18,7 +18,7 @@ public:
 										 *   @param minDegree Minimal Degree of the tree
 										 *   @param isLeaf If its Leaf
 										*/
-	~Node();
+	~Node();							/**< Destructor */
 
 	void insertNonFull(int key);				/**< Function to insert new Key in the SubTree
 												 *   @param key Key to insert
@@ -60,12 +60,20 @@ public:
 	void balance(int index);				/**< Function that balance two nodes
 											 *   @param index Position
 											*/
-	void moveToLeaf(int key);
+	void moveToLeaf(int key);				/**< Function that will place key in leaf of subtree
+											 *   @param key Key
+											*/
 
 	void print(int spacing);				/**< Prints this Node
 											 *   @param spacing Space in front of the output
 											*/
+	string printToString(int spacing);
 	void printKeys();						/**< Prints Keys of this Node */
+
+	int countKeys();		/**< Counts all Keys in tree */
+	int countMaxKeys();		/**< Counts Maximum posible count of keys in this tree */
+	int countPages();		/**< Counts Pages */
+	int countHeight();		/**< Counts Height of the tree */
 
 	friend class BTree;
 };

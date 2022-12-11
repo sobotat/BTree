@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include "Node.h"
 
@@ -15,7 +16,7 @@ public:
 	BTree(int minDegree);	/**< Constructor
 							 *   @param minDegree Minimal Degree of the tree
 							*/
-	~BTree();
+	~BTree();				/**< Destructor */
 
 	void insert(int key);	/**< Insert Key into the Tree		 
 							 *	 @param key Value to insert
@@ -30,5 +31,8 @@ public:
 							*/
 	
 	void print();			/**< Prints Tree */
+	void clearFile(string fileName);
+	void printToFile(string fileName, string heading);
+	void printStatus();		/**< Prints information about the Tree */
 	void printKeys();		/**< Prints Keys of the Tree */
 };
