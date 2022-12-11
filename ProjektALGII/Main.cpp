@@ -78,8 +78,8 @@ void btreeTest(int count) {
 int main() {
     cout << "\033[1;34mB-Tree Projekt\033[0m\n\n";
     
-    btreeTestVector();
-    //btreeTest(100);    
+    //btreeTestVector();
+    btreeTest(100);    
 
     cout << "\nEND";
 }

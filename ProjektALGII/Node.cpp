@@ -11,7 +11,8 @@ Node::Node(int minDegree, bool isLeaf) {
 Node::~Node() {
 
 	for (Node* node : childNodes) {
-		delete node;
+		if(node != nullptr)
+			delete node;
 	}
 }
 
@@ -127,20 +128,9 @@ void Node::remove(int key) {
 		balance(index);
 	}
 	else if (childNodes.at(index)->keys.size() == 0 && childNodes.at(index)->childNodes.size() > 0) {
-		Node* emptyNode = childNodes.at(index);
 		childNodes.at(index) = childNodes.at(index)->childNodes.front();
-		delete emptyNode;
 	}
 	else {
-		/*
-		Node* emptyNode = childNodes.at(index);
-		childNodes.erase(childNodes.begin() + index);
-
-		if (childNodes.size() == 0)
-			isLeaf = true;
-
-		delete emptyNode;*/
-
 		if (keys.size() > 0){
 			childNodes.at(index + 1)->moveToLeaf(keys.at(index));
 			keys.erase(keys.begin() + index);
@@ -148,7 +138,6 @@ void Node::remove(int key) {
 
 		Node* emptyNode = childNodes.at(index);
 		childNodes.erase(childNodes.begin() + index);
-
 		delete emptyNode;
 	}
 }
@@ -223,6 +212,7 @@ void Node::merge(int index) {
 		
 		keys.erase(keys.begin() + index);
 		childNodes.erase(childNodes.begin() + index + 1);
+		delete neighbor;
 
 		if (keys.size() == 0) {
 			for (int i = 0; i < child->keys.size(); i++) {
@@ -233,8 +223,6 @@ void Node::merge(int index) {
 			isLeaf = true;
 			delete child;
 		}
-
-		delete neighbor;
 	}
 }
 

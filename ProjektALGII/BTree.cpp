@@ -5,7 +5,8 @@ BTree::BTree(int minDegree) {
 }
 
 BTree::~BTree() {
-	delete root;
+	if(root != nullptr)
+		delete root;
 }
 
 void BTree::insert(int key) {
@@ -53,8 +54,6 @@ void BTree::remove(int key) {
 			root = nullptr;
 		else
 			root = root->childNodes.front();
-
-		delete(orgRoot);
 	}
 }
 
